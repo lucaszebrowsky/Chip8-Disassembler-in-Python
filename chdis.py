@@ -149,9 +149,11 @@ class dissassembler:
                 code_ = next(code).hex()
                 final_code = decoder(code_)
                 output_file = open(f"output-{self.filename}.txt", "a")
+                
                 if final_code is not None:
                     output_file.write(f"{final_code}\n")
                 output_file.close()
+                
             except Exception as error:
                 print(error)
                 break
