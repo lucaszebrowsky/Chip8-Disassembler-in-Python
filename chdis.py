@@ -6,13 +6,22 @@ def decoder(num):
     first_digits = num[0] + num[1]
     second_digits = num[2] + num[3]
 
-    if first_digits == "00":
+    if num[0] == "0" and (num[1] + second_digits) != "000":
+        return f"SYS {num[1]}{second_digits}"
+    
+    elif first_digits == "00":
         if second_digits == "00":
             return "NOP"
         elif second_digits == "e0":
             return "CLS"
         elif second_digits == "ee":
             return "RET"
+        elif second_digits == "fb":
+            return "SCR"
+        elif second_digits == "fd":
+            return "EXIT"
+        elif num[2] == "c":
+            return f"SCD {num[3]}"
         elif num[3] == "c":
             if num[2] == "f":
                 return "SCLEFT"
@@ -79,7 +88,10 @@ def decoder(num):
         return f"RND V{num[1]},{second_digits}"
 
     elif num[0] == "d":
-        return f"DRW V{num[1]},V{num[2]},{num[3]}"
+        if num[3] == "0":
+            return f"DRW V{num[1]},V{num[2]},0"
+        else:
+            return f"DRW V{num[1]},V{num[2]},{num[3]}"
 
     elif num[0] == "e":
         if second_digits == "9e":
@@ -101,13 +113,17 @@ def decoder(num):
         elif second_digits == "29":
             return f"LD F,V{num[1]}"
         elif second_digits == "30":
-            return f"XFONT V{num[1]}"
+            return f"LD HF,V{num[1]}"
         elif second_digits == "33":
             return f"LD B,V{num[1]}"
         elif second_digits == "55":
             return f"LD [I],V{num[1]}"
         elif second_digits == "65":
             return f"LD V{num[1]},[I]"
+        elif second_digits == "75":
+            return f"LD R,V{num[1]}"
+        elif second_digits == "85":
+            return f"LD V{num[1]},R"
 
     else:
         return f"ERROR: {num}"
