@@ -2,7 +2,7 @@
 
 ## Description
 Little Disassembler for Chip 8 Roms,written in Python.
-Creates Chip8-Sourcecode of .ch8 files.
+Creates Chip8-Sourcecode of .ch8 files.If you want to learn more about Chip8 [click](#http://devernay.free.fr/hacks/chip8/C8TECH10.HTM) here
 
 
 ## How-To:
