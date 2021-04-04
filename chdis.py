@@ -143,6 +143,10 @@ class dissassembler:
                     file.close()
                     return
 
+    """
+    This function writes whatever the decoder-function returns into a .txt-file
+    """
+
     def writer(self):
         code = self.reader()
 
@@ -156,11 +160,10 @@ class dissassembler:
                 code_ = next(code).hex()
                 final_code = decoder(code_)
                 output_file = open(f"output-{os.path.basename(self.filename)}.txt", "a")
-                
                 if final_code is not None:
                     output_file.write(f"{final_code}\n")
                 output_file.close()
-                
+
             except Exception as error:
                 print(error)
                 break
