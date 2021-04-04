@@ -3,39 +3,30 @@ import os
 
 
 def decoder(num):
-    first_digits = num[0] + num[1]
     second_digits = num[2] + num[3]
 
-    if num[0] == "0" and (num[1] + second_digits) != "000":
+    """
+    This dictionary includes codes that are always the same
+    """
+    const_codes = {
+        "0000": "NOP",
+        "00e0": "CLS",
+        "00ee": "RET",
+        "00fb": "SCRIGHT",
+        "00fc": "SCLEFT",
+        "00fd": "EXIT",
+        "00fe": "LOW",
+        "00ff": "HIGH"
+
+    }
+
+    if num in const_codes:
+        return const_codes[num]
+    elif num[0] == "0" and num not in const_codes:
         return f"SYS {num[1]}{second_digits}"
-    
-    elif first_digits == "00":
-        if second_digits == "00":
-            return "NOP"
-        elif second_digits == "e0":
-            return "CLS"
-        elif second_digits == "ee":
-            return "RET"
-        elif second_digits == "fb":
-            return "SCR"
-        elif second_digits == "fd":
-            return "EXIT"
-        elif num[2] == "c":
-            return f"SCD {num[3]}"
-        elif num[3] == "c":
-            if num[2] == "f":
-                return "SCLEFT"
-            else:
-                return f"SCDOWN {num[3]}"
-        elif second_digits == "fb":
-            return "SCRIGHT"
-        elif second_digits == "fe":
-            return "LOW"
-        elif second_digits == "ff":
-            return "HIGH"
 
     elif num[0] == "1":
-        return f"JP {num[1]}{second_digits}"
+        return f"JMP {num[1]}{second_digits}"
 
     elif num[0] == "2":
         return f"CALL {num[1]}{second_digits}"
