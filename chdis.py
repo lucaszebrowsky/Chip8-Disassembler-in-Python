@@ -73,7 +73,7 @@ def decoder(num):
         return f"LD I,{num[1]}{second_digits}"
 
     elif num[0] == "b":
-        return f"JP V0,{num[1]}{second_digits}"
+        return f"JMP V0,{num[1]}{second_digits}"
 
     elif num[0] == "c":
         return f"RND V{num[1]},{second_digits}"
