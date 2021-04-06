@@ -122,11 +122,19 @@ def decoder(num):
 
 class dissassembler:
 
-    def __init__(self, filename):
+        def __init__(self, filename, mode):
         if os.path.isfile(f"{filename}"):
             self.filename = filename
         else:
             print(f"Cant find File: {filename}")
+            exit()
+
+        modes = ["-hex", "-asm"]
+
+        if mode in modes:
+            self.mode = mode
+        else:
+            print(f"Invalid Argument: {mode}")
             exit()
 
     """
