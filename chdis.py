@@ -10,6 +10,7 @@ def decoder(num):
     """
     const_codes = {
         "0000": "NOP",
+        "ffff": "NOP",
         "00e0": "CLS",
         "00ee": "RET",
         "00fb": "SCRIGHT",
