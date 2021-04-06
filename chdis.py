@@ -22,6 +22,7 @@ def decoder(num):
 
     if num in const_codes:
         return const_codes[num]
+
     elif num[0] == "0" and num not in const_codes:
         return f"SYS {num[1]}{second_digits}"
 
@@ -122,7 +123,7 @@ def decoder(num):
 
 class dissassembler:
 
-        def __init__(self, filename, mode):
+    def __init__(self, filename, mode):
         if os.path.isfile(f"{filename}"):
             self.filename = filename
         else:
@@ -140,6 +141,7 @@ class dissassembler:
     """
     Reads 2 Bytes from the File(A Chip 8 Instruction is 2 Bytes long)
     """
+
     def reader(self):
         with open(self.filename, "rb") as file:
             while True:
@@ -155,7 +157,7 @@ class dissassembler:
     This function writes whatever the decoder-function returns into a .txt-file
     """
 
-       def writer(self):
+    def writer(self):
 
         code = self.reader()
         file_content = open(self.filename, "rb").read()
@@ -205,3 +207,4 @@ if len(sys.argv) == 3:
 else:
     print("Error: No Arguments are given!")
     exit()
+
