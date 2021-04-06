@@ -11,8 +11,8 @@ This program was designed to run in a terminal.
  python chdis.py <YOUR-FILE> <MODE>
  ```
  ## Modes:
- + -hex  {Creates a Hex-Dump)
- + -asm  {Creates Pseudo-Assembly)
+ + **-hex**  {Creates a Hex-Dump)
+ + **-asm**  {Creates Pseudo-Assembly)
 
 ## Note:
 + Make sure your ROM is in the same direction as "chdis.py".
