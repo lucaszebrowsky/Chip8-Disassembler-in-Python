@@ -147,30 +147,50 @@ class dissassembler:
     This function writes whatever the decoder-function returns into a .txt-file
     """
 
-    def writer(self):
-        code = self.reader()
+       def writer(self):
 
+        code = self.reader()
         file_content = open(self.filename, "rb").read()
+
         if os.path.isfile(f"output-{self.filename}.txt"):
             os.remove(f"output-{self.filename}.txt")
 
-        for i in range(0, len(file_content)):
+        # Creates a Hex-Dump of the Input-File
+        if self.mode == "-hex":
+            for i in range(0, len(file_content)):
 
-            try:
-                code_ = next(code).hex()
-                final_code = decoder(code_)
-                output_file = open(f"output-{os.path.basename(self.filename)}.txt", "a")
-                if final_code is not None:
-                    output_file.write(f"{final_code}\n")
-                output_file.close()
+                try:
+                    code_ = next(code).hex()
 
-            except Exception as error:
-                print(error)
-                break
+                    output_file = open(f"output-{os.path.basename(self.filename)}.txt", "a")
+                    if code_ is not None:
+                        output_file.write(f"{code_}\n")
+                    output_file.close()
+
+                except Exception as error:
+                    print(error)
+                    break
+
+        # Creates Pseudo-Assembly of the Input-File
+        else:
+
+            for i in range(0, len(file_content)):
+
+                try:
+                    code_ = next(code).hex()
+                    final_code = decoder(code_)
+                    output_file = open(f"output-{os.path.basename(self.filename)}.txt", "a")
+                    if final_code is not None:
+                        output_file.write(f"{final_code}\n")
+                    output_file.close()
+
+                except Exception as error:
+                    print(error)
+                    break
 
 
-if len(sys.argv) == 2:
-    new_dis = dissassembler(sys.argv[1])
+if len(sys.argv) == 3:
+    new_dis = dissassembler(sys.argv[1], sys.argv[2])
     print("Running...")
     new_dis.writer()
     print("Done.")
