@@ -17,7 +17,8 @@ def decoder(num):
         "00fc": "SCLEFT",
         "00fd": "EXIT",
         "00fe": "LOW",
-        "00ff": "HIGH"
+        "00ff": "HIGH",
+        "f000": "STOP"
 
     }
 
